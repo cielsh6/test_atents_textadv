@@ -1,0 +1,8 @@
+﻿  sString.cpp
+  main.cpp
+  PrintLib.cpp
+  CSVLib.cpp
+c:\users\user2\source\repos\180526_khj_1\180519_khj_1\csvlib.cpp(134): warning C4099: 'sString': 처음에는 'class'을(를) 사용하여 형식 이름을 표시했는데 이제는 'struct'을(를) 사용하여 표시합니다.
+  c:\users\user2\source\repos\180526_khj_1\180519_khj_1\sstring.h(13): note: 'sString' 선언을 참조하십시오.
+  코드를 생성하고 있습니다...
+  180519_khj_1.vcxproj -> C:\Users\user2\source\repos\180526_khj_1\Debug\180519_khj_1.exe
