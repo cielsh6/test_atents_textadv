@@ -34,40 +34,6 @@ int CalcParagraphCount(FILE* fp)
 	return count;
 }
 
-/* 갯수를 알 필요가 없기 때문에 얘는 필요가 없음
-void CreateParagraphStringList(sParagraph* paragraph, FILE* fp)
-{
-	char buffer[1024];	//데이터를 buffer에 저장하겠다 (저장공간을 만들어줌)
-	char* record = fgets(buffer, sizeof(buffer), fp);
-
-	int prevNo = 0;
-	int count = 0;
-
-	while (1)
-	{
-		record = fgets(buffer, sizeof(buffer), fp);
-		if (NULL == record)
-		{
-			paragraph[prevNo].stringList = (sString*)malloc(count * sizeof(sString));
-			break;
-		}
-		
-		char* token = strtok(record, ","); // 문단, 콤마를 기준으로 다 분리해줘
-		int pNo = atoi(token);
-
-		if (pNo != prevNo)		//문단이 바뀌는 부분
-		{
-			paragraph[prevNo].stringList = (sString*)malloc(count * sizeof(sString));
-
-			prevNo = pNo;
-			count = 0;
-		}
-
-		count++;
-	}
-	fseek(fp, 0, SEEK_SET);
-}
-*/
 
 
 void ParsingCSV(const char* fileName, sParagraphList* paragraphList)
@@ -84,8 +50,6 @@ void ParsingCSV(const char* fileName, sParagraphList* paragraphList)
 	// 파일을 열자마자 내부에 문단이 몇개 있는지를 계산할거다
 	paragraphList->count = CalcParagraphCount(fp);
 	paragraphList->list = (sParagraph*)malloc(paragraphList->count * sizeof(sParagraph));
-
-	//CreateParagraphStringList(paragraphList->list, fp);
 
 	// 2. 파싱 - 파일에 있는 내용을 읽는다
 
@@ -119,29 +83,20 @@ void ParsingCSV(const char* fileName, sParagraphList* paragraphList)
 		
 		if (pNo != prevNo)
 		{
-			//문단이 바뀌었다
-			//paragraphList->list[pNo].count = 0;
-			paragraphList->list[pNo].current = NULL;
-			//paragraphList->count++;
+			paragraphList->list[pNo]._current = NULL;
 			prevNo = pNo;
 		}
 		
 
 
-		//struct sString newString;
-		//InitString(&newString, text, type, selectY, selectN);
-		//AddStringToParagraph(&paragraphList->list[pNo], &newString);
-		struct  sString* newString = (sString*)malloc(sizeof(sString));
-		newString->Init(text, type, selectY, selectN);
-		AddStringToParagraph(&paragraphList->list[pNo], newString);
 
-		/*
-		 while (NULL != token)
-		 {
-		   printf("Token %s\n", token);
-		   token = strtok(NULL, ",");
-		 }
-		 */
+		//struct  sString* newString = (sString*)malloc(sizeof(sString));
+		//sString* newString = new sString();
+		//newString->Init(text, type, selectY, selectN);
+		sString* newString = new sString(text, type, selectY, selectN);
+		//AddString(&paragraphList->list[pNo], newString);
+		paragraphList->list[pNo].AddString(newString);
+
 
 	}
 

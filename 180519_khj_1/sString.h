@@ -11,6 +11,11 @@ enum eStringType
 
 class sString
 {
+public:
+	sString();	// 생성자
+	sString(const char* text, eStringType type, int selectY, int selectN);
+	~sString();	// 해제자
+
 private:	//데이터는 건드리지마
 	eStringType _type;
 	char _text[256];
@@ -20,9 +25,12 @@ private:	//데이터는 건드리지마
 	sString* _prev;		//이전 문장
 	sString* _next;		//다음 문장
 
-public:		//얘는 바꿔도 돼
+private:
 	void Init(const char* text, eStringType type);
 	void Init(const char* text, eStringType type, int selectY, int selectN);
+
+
+public:		//얘는 바꿔도 돼
 	void Print();
 
 	eStringType GetType() { return _type; }

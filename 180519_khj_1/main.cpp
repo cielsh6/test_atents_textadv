@@ -92,11 +92,11 @@ int main(void) //메인 함수
 			if (select < paragraphList.count)
 			{
 				printf("\n");		//한줄 띄고
-				nextSelect = PrintParagraph(&paragraphList.list[select]);
+				//nextSelect = Print(&paragraphList.list[select]);
+				nextSelect = paragraphList.list[select].Print();
 			}
-			else //select값이 3보다 크면 출력
+			else
 			{
-				//PrintText("비정상 종료");
 				break;
 			}
 
@@ -117,15 +117,16 @@ int main(void) //메인 함수
 		for (int i = 0; i < paragraphList.count; i++)
 		{
 			//free(paragraphList.list[i].stringList);
-			paragraphList.list[i].current = paragraphList.list[i].start;
-			while (NULL != paragraphList.list[i].current)
+			paragraphList.list[i]._current = paragraphList.list[i]._start;
+			while (NULL != paragraphList.list[i]._current)
 			{
 				//다음 문장을 기억해 놓고
-				sString* nextString = paragraphList.list[i].current->GetNext();
+				sString* nextString = paragraphList.list[i]._current->GetNext();
 				//현재 문장을 지운 후
-				free(paragraphList.list[i].current);
+				//free(paragraphList.list[i].current);
+				delete paragraphList.list[i]._current;
 				//현재 문장을 기억해 놓은 다음 문장으로 세팅
-				paragraphList.list[i].current = nextString;
+				paragraphList.list[i]._current = nextString;
 				//다음 문장을 기억하지 않고 현재 문장을 지워버리면 다음 문장을 알 방법이 없다.
 			}
 		}

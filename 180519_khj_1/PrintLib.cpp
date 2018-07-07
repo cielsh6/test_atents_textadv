@@ -8,36 +8,28 @@
 
 
 
-void AddStringToParagraph(sParagraph* paragraph, sString* string)		//도움함수 2번
+void sParagraph::AddString(sString* string)		//도움함수 2번
 {
-	/*
-	paragraph->stringList[paragraph->count] = *text;		
-	paragraph->count++;		
-	*/
+	
 	// 첫 문장일 때, 첫 문장이 아닐 때 세팅이 다르다
-	if (NULL == paragraph->current)
+	if (NULL == _current)
 	{
 		//첫 문장
-		paragraph->current = string;	//현재 문장 세팅
-		//string->_prev = NULL;
-		//string->_next = NULL;
+		_current = string;	//현재 문장 세팅
 		string->InitNode(NULL, NULL);
-		paragraph->start = string;
+		_start = string;
 	}
 	else
 	{
 		//첫 문장 아님
-		//paragraph->current->_next = string;
-		paragraph->current->SetNext(string);
-		//string->_prev = paragraph->current;
-		//string->_next = NULL;
-		string->InitNode(paragraph->current, NULL);
-		paragraph->current = string;
+		_current->SetNext(string);
+		string->InitNode(_current, NULL);
+		_current = string;
 	}
 }
 
 
-int PrintParagraph(sParagraph* paragraph)
+int sParagraph::Print()
 {
 	/*
 	for (int i = 0; i < paragraph->count; i++) //구조체를 포인터로 바꾸면 .을 ->로 바꿔줘야함 (.은 구조체일때, ->는 포인터일때 사용)
@@ -90,21 +82,21 @@ int PrintParagraph(sParagraph* paragraph)
 	}
 	*/
 
-	paragraph->current = paragraph->start;		//현재 출력할 문장을 시작 문장으로 세팅 = 시작 문장부터 출력하겠다
+	_current = _start;		//현재 출력할 문장을 시작 문장으로 세팅 = 시작 문장부터 출력하겠다
 	
 	//문장의 개수는 모르는 상태에서 반복을 진행한다
 	//현재 문장이 있으면 반복하겠다 (문장 개수를 알수 없게 되었으므로 for는 쓸수 없게 됨)
-	while (NULL != paragraph->current)
+	while (NULL != _current)
 	{
 
 		//switch (paragraph->current->_type)
-		switch (paragraph->current->GetType())
+		switch (_current->GetType())
 		{
 		case TEXT:
-			paragraph->current->Print();
+			_current->Print();
 			break;
 		case BRANCH:
-			paragraph->current->Print();
+			_current->Print();
 			//요구사항 :
 			//유저가 선택하기 전까지는 머물러 있어야 한다.
 			//유저가  y or n을 선택하면 진행이 되어야 한다.
@@ -117,11 +109,11 @@ int PrintParagraph(sParagraph* paragraph)
 				char ch = _getche();
 				if ('y' == ch || 'Y' == ch)
 				{
-					return paragraph->current->GetSelectY();
+					return _current->GetSelectY();
 				}
 				else if ('n' == ch || 'N' == ch)
 				{
-					return paragraph->current->GetSelectN();
+					return _current->GetSelectN();
 				}
 				else if (27 == ch || 'q' == ch || 'Q' == ch)	//27 : ESC
 				{
@@ -130,7 +122,7 @@ int PrintParagraph(sParagraph* paragraph)
 			}
 			break;
 		case QUIT:
-			paragraph->current->Print();
+			_current->Print();
 
 			// 이건 그냥 내가 추가한거
 			printf("다시 시작할까? Y or N");
@@ -143,7 +135,7 @@ int PrintParagraph(sParagraph* paragraph)
 
 		}
 
-		paragraph->current = paragraph->current->GetNext();
+		_current = _current->GetNext();
 	
 	}
 
