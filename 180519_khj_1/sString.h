@@ -37,7 +37,10 @@ public:		//¾ê´Â ¹Ù²ãµµ µÅ
 	int GetSelectY() { return _selectY; }
 	int GetSelectN() { return _selectN; }
 	sString* GetNext() { return _next; }
-	void SetNext(sString* next) { _next = next; }
+	void SetNext(sString* next)
+	{
+		_next = next;
+	}
 	void InitNode(sString* prev, sString* next)
 	{
 		_prev = prev;

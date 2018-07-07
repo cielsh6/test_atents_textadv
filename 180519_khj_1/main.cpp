@@ -62,7 +62,7 @@ int Load()
 int main(void) //메인 함수
 {
 
-	struct sParagraphList paragraphList;
+	sParagraphList paragraphList;
 	ParsingCSV("story.csv", &paragraphList);
 
 
@@ -86,19 +86,22 @@ int main(void) //메인 함수
 
 	while (true) //값이 true일 때 반복되는 순환문 while
 		{
-		
+			/*
 			int nextSelect = 0;		//nextSelect에 정수 0을 대입
 
-			if (select < paragraphList.count)
+			if (select < paragraphList._count)
 			{
 				printf("\n");		//한줄 띄고
 				//nextSelect = Print(&paragraphList.list[select]);
-				nextSelect = paragraphList.list[select].Print();
+				nextSelect = paragraphList._list[select].Print();
 			}
 			else
 			{
 				break;
 			}
+			*/
+			int nextSelect = paragraphList.Print(select);
+
 
 			if (nextSelect < 0)		//nextSelect 값이 0보다 작으면 종료시킨다
 			{
@@ -113,6 +116,8 @@ int main(void) //메인 함수
 
 		Save(select);
 
+
+		/*
 		//메모리 잡아다 썼으면 지워라
 		for (int i = 0; i < paragraphList.count; i++)
 		{
@@ -130,8 +135,12 @@ int main(void) //메인 함수
 				//다음 문장을 기억하지 않고 현재 문장을 지워버리면 다음 문장을 알 방법이 없다.
 			}
 		}
+		*/
 		
-		free(paragraphList.list);
+		
+		//free(paragraphList.list);
+		//delete[] paragraphList._list;		//[] :잡혀있는거 전부 지워라
+		paragraphList.Destroy();	//delete[] paragraphList._list;	를 대체할 함수를 만들어라
 
 		return 0;
 		

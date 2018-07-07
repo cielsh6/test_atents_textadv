@@ -48,8 +48,10 @@ void ParsingCSV(const char* fileName, sParagraphList* paragraphList)
 	}
 
 	// 파일을 열자마자 내부에 문단이 몇개 있는지를 계산할거다
-	paragraphList->count = CalcParagraphCount(fp);
-	paragraphList->list = (sParagraph*)malloc(paragraphList->count * sizeof(sParagraph));
+	//paragraphList->_count = CalcParagraphCount(fp);
+	//paragraphList->_list = new sParagraph[paragraphList->_count];
+	int count = CalcParagraphCount(fp);
+	paragraphList->Create(count);
 
 	// 2. 파싱 - 파일에 있는 내용을 읽는다
 
@@ -83,19 +85,19 @@ void ParsingCSV(const char* fileName, sParagraphList* paragraphList)
 		
 		if (pNo != prevNo)
 		{
-			paragraphList->list[pNo]._current = NULL;
+			//paragraphList->list[pNo]._current = NULL;		//생성자에서 해준다
 			prevNo = pNo;
 		}
 		
 
-
-
+		
 		//struct  sString* newString = (sString*)malloc(sizeof(sString));
 		//sString* newString = new sString();
 		//newString->Init(text, type, selectY, selectN);
 		sString* newString = new sString(text, type, selectY, selectN);
 		//AddString(&paragraphList->list[pNo], newString);
-		paragraphList->list[pNo].AddString(newString);
+		//paragraphList->_list[pNo].AddString(newString);
+		paragraphList->AddStringToList(pNo, newString);
 
 
 	}

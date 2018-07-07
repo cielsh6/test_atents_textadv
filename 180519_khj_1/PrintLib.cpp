@@ -6,6 +6,21 @@
 #include "PrintLib.h"
 
 
+sParagraph::sParagraph()
+{
+	_current = NULL;
+}
+
+sParagraph::~sParagraph()		//메모리 잡아다 썼으면 지워라
+{
+	_current = _start;
+	while (NULL != _current)
+	{
+		sString* nextString = _current->GetNext();
+		delete _current;
+		_current = nextString;
+	}
+}
 
 
 void sParagraph::AddString(sString* string)		//도움함수 2번
@@ -31,57 +46,7 @@ void sParagraph::AddString(sString* string)		//도움함수 2번
 
 int sParagraph::Print()
 {
-	/*
-	for (int i = 0; i < paragraph->count; i++) //구조체를 포인터로 바꾸면 .을 ->로 바꿔줘야함 (.은 구조체일때, ->는 포인터일때 사용)
-	{
-		
-		switch (paragraph->stringList[i].type)		//stringList[i] : i번째 있는 문장
-		{
-		case TEXT:
-			PrintText(paragraph->stringList[i].text);
-			break;
-		case BRANCH:
-			PrintText(paragraph->stringList[i].text);
-			//요구사항 :
-			//유저가 선택하기 전까지는 머물러 있어야 한다.
-			//유저가  y or n을 선택하면 진행이 되어야 한다.
-			//유저의 선택에 따라 다음 진행할 내용의 인덱스가 결정되어야 한다.
-			while (true)
-			{
-				// || : or
-				// && : and
-				// == : equal
-				char ch = _getche();
-				if ('y' == ch || 'Y' == ch)
-				{
-					return paragraph->stringList[i].selectY;
-				}
-				else if ('n' == ch || 'N' == ch)
-				{
-					return paragraph->stringList[i].selectN;
-				}
-				else if (27 == ch || 'q'==ch || 'Q'==ch)	//27 : ESC
-				{
-					return -1;
-				}
-			}
-			break;
-		case QUIT:
-			PrintText(paragraph->stringList[i].text);
-
-			// 이건 그냥 내가 추가한거
-			printf("다시 시작할까? Y or N");
-
-			char ch = _getche();
-			if ('n' == ch || 'N' == ch)
-			{
-				return -1; 	//종료
-			}
 	
-		}
-	}
-	*/
-
 	_current = _start;		//현재 출력할 문장을 시작 문장으로 세팅 = 시작 문장부터 출력하겠다
 	
 	//문장의 개수는 모르는 상태에서 반복을 진행한다
@@ -124,6 +89,7 @@ int sParagraph::Print()
 		case QUIT:
 			_current->Print();
 
+			/*
 			// 이건 그냥 내가 추가한거
 			printf("다시 시작할까? Y or N");
 
@@ -132,6 +98,7 @@ int sParagraph::Print()
 			{
 				return -1; 	//종료
 			}
+			*/
 
 		}
 
@@ -143,9 +110,34 @@ int sParagraph::Print()
 }
 
 
+void sParagraphList::Create(int count)
+{
+	_count = count;
+	_list = new sParagraph[_count];
+}
+
+void sParagraphList::AddStringToList(int pNo, sString* newString)
+{
+	_list[pNo].AddString(newString);
+}
+
+int sParagraphList::Print(int select)
+{
+
+	if (select < _count)
+	{
+		printf("\n");		//한줄 띄고
+		return _list[select].Print();
+	}
+	return -1;
+}
+
+
+/*
 void AddParagraphToList(sParagraphList* paragraphList, sParagraph* paragraph)
 {
-	paragraphList->list[paragraphList->count] = *paragraph;
-	paragraphList->count++;
+	paragraphList->_list[paragraphList->_count] = *paragraph;
+	paragraphList->_count++;
 }
+*/
 
