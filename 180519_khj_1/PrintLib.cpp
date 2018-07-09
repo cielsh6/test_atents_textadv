@@ -88,18 +88,17 @@ int sParagraph::Print()
 			break;
 		case QUIT:
 			_current->Print();
-
+			
 			/*
 			// 이건 그냥 내가 추가한거
 			printf("다시 시작할까? Y or N");
-
 			char ch = _getche();
 			if ('n' == ch || 'N' == ch)
 			{
-				return -1; 	//종료
+				return -1;
 			}
 			*/
-
+					
 		}
 
 		_current = _current->GetNext();
@@ -130,6 +129,12 @@ int sParagraphList::Print(int select)
 		return _list[select].Print();
 	}
 	return -1;
+}
+
+//숙제용
+void sParagraphList::Destroy()
+{
+	delete[] _list;
 }
 
 

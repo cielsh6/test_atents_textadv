@@ -86,20 +86,6 @@ int main(void) //메인 함수
 
 	while (true) //값이 true일 때 반복되는 순환문 while
 		{
-			/*
-			int nextSelect = 0;		//nextSelect에 정수 0을 대입
-
-			if (select < paragraphList._count)
-			{
-				printf("\n");		//한줄 띄고
-				//nextSelect = Print(&paragraphList.list[select]);
-				nextSelect = paragraphList._list[select].Print();
-			}
-			else
-			{
-				break;
-			}
-			*/
 			int nextSelect = paragraphList.Print(select);
 
 
@@ -116,27 +102,7 @@ int main(void) //메인 함수
 
 		Save(select);
 
-
-		/*
-		//메모리 잡아다 썼으면 지워라
-		for (int i = 0; i < paragraphList.count; i++)
-		{
-			//free(paragraphList.list[i].stringList);
-			paragraphList.list[i]._current = paragraphList.list[i]._start;
-			while (NULL != paragraphList.list[i]._current)
-			{
-				//다음 문장을 기억해 놓고
-				sString* nextString = paragraphList.list[i]._current->GetNext();
-				//현재 문장을 지운 후
-				//free(paragraphList.list[i].current);
-				delete paragraphList.list[i]._current;
-				//현재 문장을 기억해 놓은 다음 문장으로 세팅
-				paragraphList.list[i]._current = nextString;
-				//다음 문장을 기억하지 않고 현재 문장을 지워버리면 다음 문장을 알 방법이 없다.
-			}
-		}
-		*/
-		
+	
 		
 		//free(paragraphList.list);
 		//delete[] paragraphList._list;		//[] :잡혀있는거 전부 지워라

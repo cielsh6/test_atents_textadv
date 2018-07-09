@@ -32,6 +32,8 @@ public:
 	void Create(int count);
 	void AddStringToList(int pNo, sString* newString);
 	int Print(int select);
+	//¼÷Á¦¿ë
+	void Destroy();
 	
 };
 
