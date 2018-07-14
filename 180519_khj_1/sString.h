@@ -25,12 +25,13 @@ private:	//데이터는 건드리지마
 	sString* _prev;		//이전 문장
 	sString* _next;		//다음 문장
 
-private:
+public:
 	void Init(const char* text, eStringType type);
 	void Init(const char* text, eStringType type, int selectY, int selectN);
 
 
 public:		//얘는 바꿔도 돼
+	virtual int Process();		//virtual  = 상속을 받은 자식 클래스에서는 다르게 작동시키고 싶어요.
 	void Print();
 
 	eStringType GetType() { return _type; }

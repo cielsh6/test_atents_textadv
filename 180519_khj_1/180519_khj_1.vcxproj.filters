@@ -18,24 +18,48 @@
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="PrintLib.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="CSVLib.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="sString.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="sParagraph.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="sParagraphList.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="sStringText.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="sStringBranch.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="sStringQuit.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="PrintLib.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
     <ClInclude Include="CSVLib.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
     <ClInclude Include="sString.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="sParagraph.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="sParagraphList.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="sStringText.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="sStringBranch.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="sStringQuit.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
   </ItemGroup>

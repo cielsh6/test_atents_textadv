@@ -1,9 +1,15 @@
 #include <stdio.h> //FILE 구조체를 사용
 #include <string.h> // token을 분리해주는 함수를 가져다 쓰기 위함 (strtok)
 #include <stdlib.h>
-#include "PrintLib.h"
+
 #include "sString.h"
 #include "CSVLib.h"
+#include "sParagraphList.h"
+#include "sStringText.h"
+#include "sStringBranch.h"
+#include "sStringQuit.h"
+
+
 
 int CalcParagraphCount(FILE* fp)
 {
@@ -48,8 +54,6 @@ void ParsingCSV(const char* fileName, sParagraphList* paragraphList)
 	}
 
 	// 파일을 열자마자 내부에 문단이 몇개 있는지를 계산할거다
-	//paragraphList->_count = CalcParagraphCount(fp);
-	//paragraphList->_list = new sParagraph[paragraphList->_count];
 	int count = CalcParagraphCount(fp);
 	paragraphList->Create(count);
 
@@ -91,12 +95,21 @@ void ParsingCSV(const char* fileName, sParagraphList* paragraphList)
 		
 
 		
-		//struct  sString* newString = (sString*)malloc(sizeof(sString));
-		//sString* newString = new sString();
-		//newString->Init(text, type, selectY, selectN);
-		sString* newString = new sString(text, type, selectY, selectN);
-		//AddString(&paragraphList->list[pNo], newString);
-		//paragraphList->_list[pNo].AddString(newString);
+		//sString* newString = new sString(text, type, selectY, selectN);
+		sString* newString = NULL;
+		switch (type)
+		{
+		case eStringType::TEXT:
+			newString = new sStringText();
+			break;
+		case eStringType::BRANCH:
+			newString = new sStringBranch();
+			break;
+		case eStringType::QUIT:
+			newString = new sStringQuit();
+			break;
+		}
+		newString->Init(text, type, selectY, selectN);
 		paragraphList->AddStringToList(pNo, newString);
 
 

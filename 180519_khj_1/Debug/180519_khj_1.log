@@ -1,9 +1,2 @@
-﻿  main.cpp
-c:\users\user2\source\repos\180526_khj_1\180519_khj_1\main.cpp(65): warning C4099: 'sParagraphList': 처음에는 'class'을(를) 사용하여 형식 이름을 표시했는데 이제는 'struct'을(를) 사용하여 표시합니다.
-  c:\users\user2\source\repos\180526_khj_1\180519_khj_1\printlib.h(26): note: 'sParagraphList' 선언을 참조하십시오.
-c:\users\user2\source\repos\180526_khj_1\180519_khj_1\main.cpp(143): error C2039: 'Destroy': 'sParagraphList'의 멤버가 아닙니다.
-  c:\users\user2\source\repos\180526_khj_1\180519_khj_1\printlib.h(26): note: 'sParagraphList' 선언을 참조하십시오.
-  PrintLib.cpp
-  코드를 생성하고 있습니다...
-  건너뛰고 있습니다... (관련된 변경 내용 없음)
-  CSVLib.cpp
+﻿  sStringQuit.cpp
+  180519_khj_1.vcxproj -> C:\Users\user2\source\repos\180526_khj_1\Debug\180519_khj_1.exe

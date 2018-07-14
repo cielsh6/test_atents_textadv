@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+
 #include "sString.h"
 
 
@@ -44,3 +45,8 @@ void sString::Print()
 	printf("\n");
 }
 
+
+int sString::Process()
+{
+	return -1;
+}
